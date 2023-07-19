@@ -1,17 +1,8 @@
+@import "@/styles/mixins"
 @import "@/styles/variables"
   
 .main
-  position: fixed
-  top: 50%
-  left: 50%
-  transform: translate(-50%, -50%)
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: flex-start
-  gap: $gap
-  font-size: $font-size
-  line-height: 1em
+  @include centerMixin
   & > a
     display: flex
     flex-direction: column
