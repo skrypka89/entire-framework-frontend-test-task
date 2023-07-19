@@ -1,5 +1,15 @@
-import styles from '@/app/page.module.sass';
+import { Suspense } from 'react';
 
-export default function Home() {
-  return <main className={styles.main}></main>;
+import styles from '@/app/page.module.sass';
+import fetchData from '@/utils/fetchData';
+
+export default async function Home() {
+  const data = await fetchData();
+  console.log(data);
+
+  return (
+    <main className={styles.main}>
+      <Suspense fallback={<p>Loading...</p>}>Data have been fetched</Suspense>
+    </main>
+  );
 }
