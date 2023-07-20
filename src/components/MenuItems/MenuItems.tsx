@@ -22,14 +22,14 @@ export default function MenuItems({ data, menuItem }: PropsType) {
     if (menuItem) {
       setContext.call(contextObject, selected);
     }
-  }, []);
+  }, [menuItem, selected, setContext]);
 
   return (
     <>
       {data.map(item => {
         const id = item[MenuItemsEnum.ID];
-        let { [MenuItemsEnum.TITLE]: title, [MenuItemsEnum.URL]: url } =
-          item[MenuItemsEnum.ATTRIBUTES];
+        const { [MenuItemsEnum.TITLE]: title } = item[MenuItemsEnum.ATTRIBUTES];
+        let { [MenuItemsEnum.URL]: url } = item[MenuItemsEnum.ATTRIBUTES];
         url = removeSlash(url);
         const className: 'collapsed' | 'expanded' | undefined =
           selected === url ? 'collapsed' : context === url ? 'expanded' : undefined;

@@ -1,5 +1,4 @@
 import { Suspense } from 'react';
-import 'server-only';
 
 import MenuItems from '@/components/MenuItems/MenuItems';
 import { MenuItemsEnum } from '@/constants/constants';
