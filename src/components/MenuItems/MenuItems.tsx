@@ -1,22 +1,26 @@
+'use client';
+
 import Link from 'next/link';
 
 import { MenuItemsEnum } from '@/constants/constants';
-import { MenuItemsType } from '@/types/types';
+import { MenuItemType } from '@/types/types';
+import { removeSlash } from '@/utils/utils';
 
-type Props = {
-  data: MenuItemsType;
+type PropsType = {
+  data: MenuItemType[];
+  menuItem?: string;
 };
 
-export default function MenuItems({ data }: Props) {
+export default function MenuItems({ data, menuItem }: PropsType) {
   return (
     <>
-      {data[MenuItemsEnum.MENU_ITEMS][MenuItemsEnum.DATA].map(item => {
+      {data.map(item => {
         const id = item[MenuItemsEnum.ID];
         let { [MenuItemsEnum.TITLE]: title, [MenuItemsEnum.URL]: url } =
           item[MenuItemsEnum.ATTRIBUTES];
-        url = url.includes('/') ? url : '/' + url;
+        url = removeSlash(url);
         return (
-          <Link key={id} href={url}>
+          <Link key={id} href="/[...menuItem]]" as={`/${url}`}>
             {title.length <= 11 ? (
               <p>{title}</p>
             ) : (

@@ -1,16 +1,37 @@
 import { Suspense } from 'react';
+import 'server-only';
 
 import styles from '@/app/[[...menuItem]]/page.module.sass';
 import MenuItems from '@/components/MenuItems/MenuItems';
-import fetchData from '@/utils/fetchData';
+import { MenuItemsEnum } from '@/constants/constants';
+import { getFetchedData, removeSlash } from '@/utils/utils';
 
-export default async function Home() {
-  const data = await fetchData();
+type ParamsType = {
+  menuItem?: string[];
+};
 
+type PropsType = {
+  params: ParamsType;
+};
+
+export async function generateStaticParams(): Promise<ParamsType[]> {
+  const data = await getFetchedData();
+  return data[MenuItemsEnum.MENU_ITEMS][MenuItemsEnum.DATA].map(item => {
+    let menuItem = item[MenuItemsEnum.ATTRIBUTES][MenuItemsEnum.URL];
+    menuItem = removeSlash(menuItem);
+    return { menuItem: menuItem ? [menuItem] : undefined };
+  });
+}
+
+export default async function Page({ params }: PropsType) {
+  const data = await getFetchedData();
   return (
     <main className={styles.main}>
       <Suspense fallback={<p>Loading...</p>}>
-        <MenuItems data={data} />
+        <MenuItems
+          data={data[MenuItemsEnum.MENU_ITEMS][MenuItemsEnum.DATA]}
+          menuItem={params.menuItem?.[0]}
+        />
       </Suspense>
     </main>
   );

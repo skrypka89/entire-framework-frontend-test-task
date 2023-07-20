@@ -3,6 +3,10 @@ import { IBM_Plex_Mono } from 'next/font/google';
 
 import '@/styles/index.sass';
 
+type PropsType = {
+  children: React.ReactNode;
+};
+
 const font = IBM_Plex_Mono({
   weight: ['400'],
   style: ['normal'],
@@ -15,7 +19,7 @@ export const metadata: Metadata = {
   description: 'A test task from Entire Framework company',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: PropsType) {
   return (
     <html lang="en">
       <body className={font.className}>{children}</body>

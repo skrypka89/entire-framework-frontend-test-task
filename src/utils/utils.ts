@@ -1,7 +1,9 @@
+import { cache } from 'react';
+
 import { apiUrl } from '@/constants/constants';
 import { MenuItemsType } from '@/types/types';
 
-export default async function fetchData(): Promise<MenuItemsType> {
+export const getFetchedData: () => Promise<MenuItemsType> = cache(async () => {
   const response: Response = await fetch(apiUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -20,12 +22,15 @@ export default async function fetchData(): Promise<MenuItemsType> {
         }
       `,
     }),
+    cache: 'force-cache',
   });
-
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
   }
-
   const { data }: { data: MenuItemsType } = await response.json();
   return data;
+});
+
+export function removeSlash(str: string): string {
+  return str.includes('/') ? str.split('').slice(1).join('') : str;
 }
