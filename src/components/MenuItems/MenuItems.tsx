@@ -43,7 +43,11 @@ export default function MenuItems({ data, menuItem }: PropsType) {
             {title.length <= 11 ? (
               <p>{title}</p>
             ) : (
-              title.split(' ').map((t, i) => <p key={i}>{t}</p>)
+              title.split(' ').map((t, i, arr) => (
+                <p style={{ marginBottom: i === arr.length - 1 ? 4 : 0 }} key={i}>
+                  {t}
+                </p>
+              ))
             )}
           </Link>
         );
