@@ -11,3 +11,5 @@ export type MenuItemType = {
 export type MenuItemsType = {
   [MenuItemsEnum.MENU_ITEMS]: { [MenuItemsEnum.DATA]: Array<MenuItemType> };
 };
+
+export type LayoutPropsType = { children: React.ReactNode };

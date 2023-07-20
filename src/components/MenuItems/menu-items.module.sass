@@ -1,0 +1,17 @@
+@import "@/styles/mixins"
+@import "@/styles/variables"
+  
+.collapsed
+  @include animationMixin
+
+.expanded
+  @include animationMixin
+  animation-direction: reverse
+
+@keyframes css-animation
+  0%
+    opacity: 1
+  
+  100%
+    opacity: 0
+    pointer-events: none
