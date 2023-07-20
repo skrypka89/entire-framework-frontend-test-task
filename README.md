@@ -2,9 +2,9 @@
 
 This is a Frontend test task from Entire Framework company. The application fetches data from the GraphQL endpoint and displays them as a menu with interactive animation.
 
-## Design template
+## Description
 
-[Figma](https://www.figma.com/file/kX35vODAAF6s4ZeBl6VXxF/Entire-Framework%3A-Frontend-Developer-(React-%2F-Vue)-%2F-Test-Task?node-id=0%3A1&t=QlEWZhymcbCwIQQh-1)
+[Frontend Developer (React, Next)](https://entireframework.notion.site/Frontend-Developer-React-Next-784de5b27dbb49d994291f7b43a82507)
 
 ## Deployment
 
@@ -23,6 +23,6 @@ npm run dev
 - React
 - Next.js
 - TypeScript
-- SASS
-- ESlint
+- Sass
+- ESLint
 - Prettier

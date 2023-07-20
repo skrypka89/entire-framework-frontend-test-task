@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useContext, useEffect } from 'react';
 
-import Context, { contextObject } from '@/app/(layout)/Context';
+import Context, { contextObject } from '@/app/(pages)/Context';
 import styles from '@/components/MenuItems/menu-items.module.sass';
 import { MenuItemsEnum } from '@/constants/constants';
 import { MenuItemType } from '@/types/types';
@@ -19,10 +19,8 @@ export default function MenuItems({ data, menuItem }: PropsType) {
   const { context, setContext } = useContext(Context);
 
   useEffect(() => {
-    if (menuItem) {
-      setContext.call(contextObject, selected);
-    }
-  }, [menuItem, selected, setContext]);
+    setContext.call(contextObject, selected);
+  }, [selected, setContext]);
 
   return (
     <>
